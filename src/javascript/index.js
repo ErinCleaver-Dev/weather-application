@@ -1,10 +1,10 @@
 //In your project, display the current date and time using JavaScript: Tuesday 16:00
 const updateTime = () => {
-    currentTime = document.querySelector("#curren_time")
-    currentDate = new Date()
+    let currentTime = document.querySelector("#curren_time")
+    let currentDate = new Date()
 
     console.log(currentTime)
-    fromatedDate = currentDate.toLocaleDateString("en-us",
+    let fromatedDate = currentDate.toLocaleDateString("en-us",
         {
             weekday: "long",
             hour12: false,
@@ -18,10 +18,11 @@ updateTime()
 
 
 //Add a search engine, when searching for a city (i.e. Paris), display the city name on the page after the user submits the form.
-const getCityName = () => {
-    search = document.querySelector('#search');
-    errorMessage = document.querySelector('#error_message')
-    city = document.querySelector('#location')
+const getCityName = (event) => {
+    event.preventDefault()
+    let search = document.querySelector('#search');
+    let errorMessage = document.querySelector('#error_message')
+    let city = document.querySelector('#location')
     console.log(search)
     console.log()
 
@@ -39,8 +40,8 @@ searchForm.addEventListener('submit', getCityName);
 
 const convertTemperature = (event) => {
     event.preventDefault()
-    currentTemp = document.querySelector('#current_temp')
-    convert = document.querySelector('#convert')
+    let currentTemp = document.querySelector('#current_temp')
+    let convert = document.querySelector('#convert')
 
     if(convert.innerHTML === '°C') {
         currentTemp.innerHTML = Math.round((currentTemp.innerHTML * 1.8) + 32)
@@ -51,5 +52,5 @@ const convertTemperature = (event) => {
     }
 }
 
-convert = document.querySelector('#convert')
+let convert = document.querySelector('#convert')
 convert.addEventListener('click', convertTemperature)
