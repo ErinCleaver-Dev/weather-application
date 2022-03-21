@@ -16,9 +16,12 @@
                 <a class="navbar-brand" href="./index.html" id="location">
                     City, State
                 </a>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
-                    <button class="btn btn-lg btn-outline-light" type="submit" id="search_button">Search</button>
+                <form id='search_form'>
+                    <div class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
+                        <button class="btn btn-lg btn-outline-light" type="submit" id="search_button">Search</button>
+                    </div>
+                    <p id="error_message">Please enter a city name</p>
                 </form>
             </div>
         </nav>
@@ -32,9 +35,10 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <div class="d-flex flex-column m-4">
+                            <h1 id="curren_time"></h1>
                             <h2>
-                                <span id="current_temp">44°C
-                                </span>
+                                <span id="current_temp">17</span><a href="#" id="convert">°C</a>
+                                
                             </h2>
                             <p id="current_precipitation">Precipitation: 10%</p>
                             <p id="current_humidity">Humidity: 71%</p>
@@ -85,7 +89,6 @@
 
     </div>
     
-    <script type="text/javascript" src="./src/javascript/js-data-types.js"></script>
     <script type="text/javascript" src="./src/javascript/index.js"></script>
 </body>
 </html>
