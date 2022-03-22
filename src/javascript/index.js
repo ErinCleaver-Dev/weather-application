@@ -28,13 +28,27 @@ const getCityName = (event) => {
 
     if(search.value === "") {
         errorMessage.style.display = "inline-block"
+        return false;
     } else {
         errorMessage.style.display = "none"
         city.innerHTML = search.value;
+        return city;
     }
 }
 let searchForm = document.querySelector("#search_form")
+
+getCitiesWeather = () => {
+    city = getCityName();
+
+    if(city != false) {
+        
+    }
+}
+
 searchForm.addEventListener('submit', getCityName);
+
+
+
 
 //Display a fake temperature (i.e 17) in Celsius and add a link to convert it to Fahrenheit. When clicking on it, it should convert the temperature to Fahrenheit. When clicking on Celsius, it should convert it back to Celsius.
 
@@ -54,3 +68,5 @@ const convertTemperature = (event) => {
 
 let convert = document.querySelector('#convert')
 convert.addEventListener('click', convertTemperature)
+
+
