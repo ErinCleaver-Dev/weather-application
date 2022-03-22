@@ -1,4 +1,5 @@
 //In your project, display the current date and time using JavaScript: Tuesday 16:00
+
 const updateTime = () => {
     let currentTime = document.querySelector("#curren_time")
     let currentDate = new Date()
@@ -18,11 +19,9 @@ updateTime()
 
 
 //Add a search engine, when searching for a city (i.e. Paris), display the city name on the page after the user submits the form.
-const getCityName = (event) => {
-    event.preventDefault()
+const getCityName = () => {
     let search = document.querySelector('#search');
     let errorMessage = document.querySelector('#error_message')
-    let city = document.querySelector('#location')
     console.log(search)
     console.log()
 
@@ -31,21 +30,41 @@ const getCityName = (event) => {
         return false;
     } else {
         errorMessage.style.display = "none"
-        city.innerHTML = search.value;
-        return city;
+        return search.value;
     }
 }
 let searchForm = document.querySelector("#search_form")
 
-getCitiesWeather = () => {
-    city = getCityName();
+const currentWeather = (response) => {
+    let city = document.querySelector('#location')
+    let currentTemp = document.querySelector('#current_temp')
+    let currentHumidity = document.querySelector('#current_humidity')
+    let currentCondition = document.querySelector('#current_condition')
+    console.log(response.data)
+    let currentSpeed = document.querySelector('#current_speed')
 
-    if(city != false) {
-        
-    }
+    currentTemp.innerHTML =  Math.round(response.data.main.temp)
+    currentHumidity.innerHTML = response.data.main.humidity
+    currentCondition.innerHTML = response.data.weather[0].description
+    currentSpeed.innerHTML = Math.round(response.data.wind.speed)
+    city.innerHTML = response.data.name
 }
 
-searchForm.addEventListener('submit', getCityName);
+const searchByName = async (event) => {
+    event.preventDefault()
+    let city = 'Sydney'
+    let key = '8ce0a35d2a13fe92920704c88ae78c6d'
+
+    city = getCityName();
+    if(city != false) {
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`
+        axios.get(url).then(currentWeather)        
+    } 
+}
+
+
+
+searchForm.addEventListener('submit', searchByName);
 
 
 
@@ -69,4 +88,26 @@ const convertTemperature = (event) => {
 let convert = document.querySelector('#convert')
 convert.addEventListener('click', convertTemperature)
 
+const getGeoData = (event) => {
+    event.preventDefault()
+    navigator.geolocation.getCurrentPosition((sendGeoData));
+}
 
+const sendGeoData = async (position) => {
+    let key = '8ce0a35d2a13fe92920704c88ae78c6d'
+    let latitude = '';
+    let longitude = '';
+  
+  
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    if(latitude != '' && longitude != '')
+    {
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`
+        axios.get(url).then(currentWeather) 
+    }       
+}
+
+let currentLocation = document.querySelector('#get_current_location')
+
+currentLocation.addEventListener('click', (getGeoData))

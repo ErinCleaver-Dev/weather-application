@@ -29,3 +29,6 @@
     color: red;
 }
 
+#current_condition {
+    text-transform: capitalize;
+}
