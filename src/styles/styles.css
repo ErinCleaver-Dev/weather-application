@@ -32,3 +32,9 @@
 #current_condition {
     text-transform: capitalize;
 }
+
+#github-link {
+    text-decoration: none;
+    color: blue;
+}
+
