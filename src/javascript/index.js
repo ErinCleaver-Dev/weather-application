@@ -1,4 +1,5 @@
 //In your project, display the current date and time using JavaScript: Tuesday 16:00
+let key = '8ce0a35d2a13fe92920704c88ae78c6d'
 
 const updateTime = () => {
     let currentTime = document.querySelector("#curren_time")
@@ -53,7 +54,6 @@ const currentWeather = (response) => {
 const searchByName = async (event) => {
     event.preventDefault()
     let city = 'Sydney'
-    let key = '8ce0a35d2a13fe92920704c88ae78c6d'
 
     city = getCityName();
     if(city != false) {
@@ -62,12 +62,14 @@ const searchByName = async (event) => {
     } 
 }
 
+const defaultCity = async(event) => {
+    let city = 'Sydney'
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`
+    await axios.get(url).then(currentWeather)      
+}
 
-
+defaultCity()
 searchForm.addEventListener('submit', searchByName);
-
-
-
 
 //Display a fake temperature (i.e 17) in Celsius and add a link to convert it to Fahrenheit. When clicking on it, it should convert the temperature to Fahrenheit. When clicking on Celsius, it should convert it back to Celsius.
 
@@ -94,7 +96,6 @@ const getGeoData = (event) => {
 }
 
 const sendGeoData = async (position) => {
-    let key = '8ce0a35d2a13fe92920704c88ae78c6d'
     let latitude = '';
     let longitude = '';
   
