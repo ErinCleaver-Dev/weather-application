@@ -138,7 +138,6 @@ const tempConver = (temp, temp2, convert) => {
     if(convert == 'C') {
         temp = Math.round((temp * 1.8) + 32)
         temp2 = Math.round((temp2 * 1.8) + 32)
-        console.log(temp2)
         convert = 'F'
     } else if(convert == 'F') {
         temp = Math.round((temp - 32) * .55)
