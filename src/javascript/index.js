@@ -54,20 +54,33 @@ const currentWeather = (response) => {
     currentIcon.src = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
 }
 
-const searchByName = async (event) => {
+const searchByName = (event) => {
     event.preventDefault()
 
     city = getCityName();
     if(city != false) {
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`
-        await axios.get(url).then(currentWeather)        
+        getAPICity('weather', city)    
     } 
 }
 
-const defaultCity = async (event) => {
+const getAPICity = async (type, city) => {
+    if(type == 'weather') {
+        let url = `https://api.openweathermap.org/data/2.5/${type}?q=${city}&units=metric&appid=${key}`
+        await axios.get(url).then(currentWeather)  
+    }
+}
+
+const getLocationAPI = async (type, latitude, longitude) => {
+    if(type == 'weather') {
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`
+        await axios.get(url).then(currentWeather) 
+    }
+}
+
+
+const defaultCity = (event) => {
     let city = 'Sydney'
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`
-    await axios.get(url).then(currentWeather)      
+    getAPICity('weather', city)   
 }
 
 defaultCity()
@@ -97,7 +110,7 @@ const getGeoData = (event) => {
     navigator.geolocation.getCurrentPosition((sendGeoData));
 }
 
-const sendGeoData = async (position) => {
+const sendGeoData = (position) => {
     let latitude = '';
     let longitude = '';
   
@@ -106,8 +119,7 @@ const sendGeoData = async (position) => {
     longitude = position.coords.longitude;
     if(latitude != '' && longitude != '')
     {
-        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`
-        await axios.get(url).then(currentWeather) 
+        getLocationAPI('weather', latitude, longitude)
     }       
 }
 
