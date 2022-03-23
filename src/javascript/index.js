@@ -51,8 +51,7 @@ const currentWeather = (response) => {
     currentCondition.innerHTML = response.data.weather[0].description
     currentSpeed.innerHTML = Math.round(response.data.wind.speed)
     city.innerHTML = response.data.name
-    currentIcon.src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    return true;
+    currentIcon.src = `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
 }
 
 const searchByName = async (event) => {
