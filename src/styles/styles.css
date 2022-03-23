@@ -41,3 +41,9 @@
 .weather_icons_background {
     background-color:rgba(222, 236, 240, 0.842);
 }
+
+.footer {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
