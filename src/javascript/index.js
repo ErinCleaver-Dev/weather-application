@@ -57,12 +57,11 @@ const currentWeather = (response) => {
 
 const searchByName = async (event) => {
     event.preventDefault()
-    let city = 'Sydney'
 
     city = getCityName();
     if(city != false) {
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`
-        axios.get(url).then(currentWeather)        
+        await axios.get(url).then(currentWeather)        
     } 
 }
 
@@ -109,7 +108,7 @@ const sendGeoData = async (position) => {
     if(latitude != '' && longitude != '')
     {
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`
-        axios.get(url).then(currentWeather) 
+        await axios.get(url).then(currentWeather) 
     }       
 }
 
