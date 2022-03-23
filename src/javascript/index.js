@@ -23,8 +23,6 @@ updateTime()
 const getCityName = () => {
     let search = document.querySelector('#search');
     let errorMessage = document.querySelector('#error_message')
-    console.log(search)
-    console.log()
 
     if(search.value === "") {
         errorMessage.style.display = "inline-block"
@@ -37,10 +35,8 @@ const getCityName = () => {
 let searchForm = document.querySelector("#search_form")
 
 const forecast = response => {
-    console.log(response.data.daily[0])
     let daily = document.querySelectorAll('.daily')
     for(let i = 0; i < daily.length; i++) {
-        console.log(daily[i])
         daily[i].querySelector('.day').innerHTML = convertDay(response.data.daily[i].dt)
         daily[i].querySelector('.day_temp .min').innerHTML = Math.round(response.data.daily[i].temp.min)
         daily[i].querySelector('.day_temp .max').innerHTML = Math.round(response.data.daily[i].temp.max)
@@ -65,8 +61,6 @@ const currentWeather = (response) => {
     let currentCondition = document.querySelector('#current_condition')
     let currentSpeed = document.querySelector('#current_speed')
     let currentIcon = document.querySelector('.weather_icons.current_image')
-    console.log("test current icon", currentIcon)
-
     currentTemp.innerHTML =  Math.round(response.data.main.temp)
     currentHumidity.innerHTML = response.data.main.humidity
     currentCondition.innerHTML = response.data.weather[0].description
@@ -132,9 +126,7 @@ searchForm.addEventListener('submit', searchByName);
 //Display a fake temperature (i.e 17) in Celsius and add a link to convert it to Fahrenheit. When clicking on it, it should convert the temperature to Fahrenheit. When clicking on Celsius, it should convert it back to Celsius.
 
 const tempConver = (temp, temp2, convert) => {
-    console.log(convert)
     convert.trim()
-    
     if(convert == 'C') {
         temp = Math.round((temp * 1.8) + 32)
         temp2 = Math.round((temp2 * 1.8) + 32)
@@ -161,14 +153,10 @@ const dispalyConvertions = (event) => {
     let daily = document.querySelectorAll('.daily')
     daily.forEach(day => {
         
-       
-        console.log(day)
         let min = day.querySelector('.day_temp .min')
         let max = day.querySelector('.day_temp .max')
         convert =day.querySelector('.day_temp .convert')
-        console.log(convert)
         convertions = tempConver(min.innerHTML, max.innerHTML, convert.innerHTML)
-        console.log(convertions)
         min.innerHTML = convertions.temp;
         max.innerHTML = convertions.temp2;
         convert.innerHTML = convertions.convert
