@@ -79,7 +79,7 @@ const getLocationAPI = async (type, latitude, longitude) => {
 
 
 const defaultCity = (event) => {
-    let city = 'Sydney'
+    let city = 'Lansing'
     getAPICity('weather', city)   
 }
 
