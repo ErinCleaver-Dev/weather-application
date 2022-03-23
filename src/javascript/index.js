@@ -43,12 +43,16 @@ const currentWeather = (response) => {
     let currentCondition = document.querySelector('#current_condition')
     console.log(response.data)
     let currentSpeed = document.querySelector('#current_speed')
+    let currentIcon = document.querySelector('.weather_icons.current_image')
+    console.log("test current icon", currentIcon)
 
     currentTemp.innerHTML =  Math.round(response.data.main.temp)
     currentHumidity.innerHTML = response.data.main.humidity
     currentCondition.innerHTML = response.data.weather[0].description
     currentSpeed.innerHTML = Math.round(response.data.wind.speed)
     city.innerHTML = response.data.name
+    currentIcon.src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    
 }
 
 const searchByName = async (event) => {
