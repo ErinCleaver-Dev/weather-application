@@ -52,7 +52,7 @@ const currentWeather = (response) => {
     currentSpeed.innerHTML = Math.round(response.data.wind.speed)
     city.innerHTML = response.data.name
     currentIcon.src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    
+    return true;
 }
 
 const searchByName = async (event) => {
@@ -65,7 +65,7 @@ const searchByName = async (event) => {
     } 
 }
 
-const defaultCity = async(event) => {
+const defaultCity = async (event) => {
     let city = 'Sydney'
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`
     await axios.get(url).then(currentWeather)      
