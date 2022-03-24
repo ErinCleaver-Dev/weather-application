@@ -11,6 +11,10 @@
     justify-content: center;
 }
 
+.current_image {
+    min-height: 400px;
+}
+
 .weather_boarder {
     border: 1px solid #f1f1f1;
     margin: 10px;
