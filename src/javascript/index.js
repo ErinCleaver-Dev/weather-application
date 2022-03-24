@@ -18,7 +18,6 @@ const updateTime = () => {
 
 updateTime()
 
-
 //Add a search engine, when searching for a city (i.e. Paris), display the city name on the page after the user submits the form.
 const getCityName = () => {
     let search = document.querySelector('#search');
@@ -52,8 +51,6 @@ const convertDay = (date) => {
     return day
 }
 
- 
-
 const currentWeather = (response) => {
     let city = document.querySelector('#location')
     let currentTemp = document.querySelector('#current_temp')
@@ -78,10 +75,6 @@ const searchByName = (event) => {
         getAPICity('onecall', city)    
     } 
 }
-
-
-
-
 
 const getAPICity = async (type, city) => {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`
@@ -162,13 +155,7 @@ const dispalyConvertions = (event) => {
         convert.innerHTML = convertions.convert
 
     })
-
-
 }
-
-
-
-
 
 let convert = document.querySelector('#convert')
 convert.addEventListener('click', dispalyConvertions)
@@ -182,14 +169,12 @@ const sendGeoData = (position) => {
     let latitude = '';
     let longitude = '';
   
-  
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     if(latitude != '' && longitude != '')
     {
         getLocationAPI('weather', latitude, longitude)
         getLocationAPI('onecall', latitude, longitude)
-        
     }       
 }
 
